@@ -7,6 +7,7 @@ long displayVal[NUM_DISPLAYS] = {0L, 0L, 0L, 0L, 0L};
 String displayDigits[NUM_DISPLAYS] = {"000000", "000000", "000000", "000000", "000000"};
 bool displayRunning[NUM_DISPLAYS] = {false, false, false, false, false};
 bool allRunning = false;
+int digitToPrint = 0;
 
 TimerOne updatingTimer;
 TimerOne displayingTimer;
@@ -18,6 +19,7 @@ TimerOne displayingTimer;
 void displayConvert(int displayNumber)
 {
     displayVal[displayNumber] += 8353;
+    displayVal[displayNumber] %= 1000000;
     
     displayDigits[displayNumber] = String(displayVal[displayNumber]);
 }// End of displayConvert
@@ -86,17 +88,36 @@ void updateScores()
       displayConvert(index);
      }
   }
+
+  printAll();
+  
 }// End of updateScores()
+
+/*
+ * Debug printing funciton. Called right before updateScores() finishes.
+ */
+void printAll()
+{
+  int i = 0;
+  for(i = 0; i < 5; i++)
+  {
+    Serial.println(displayDigits[i]);
+  }
+
+  Serial.print("\n\n\n\n\n");
+}
+
 
 void setup()
 {
   Serial.begin(9600); //DEBUG
   updatingTimer.initialize(500000); // timer every half second. 
-  displayingTimer.initialize(3100); // timer every 3.1 millisecond.
+  displayingTimer.initialize(31000); // timer every 3.1 millisecond.
+
+  updatingTimer.attachInterrupt(updateScores);
 }
 
 void loop()
 {
-  updatingTimer.attachInterrupt(updateScores);
   
 }
