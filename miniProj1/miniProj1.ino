@@ -114,13 +114,24 @@ void updateScores()
  */
 void printAll()
 {
-  int i = 0;
-  for(i = 0; i < 5; i++)
+  int y = 0;
+  Serial.println("Displays");
+  Serial.println("Read Down");
+  Serial.println("1 2 3 4 5");
+  Serial.println("---------");
+  for(y = 0; y < 6; y++)
   {
-    Serial.println(displayDigits[i]);
+    int x;
+    for(x = 0; x < 5; x++)
+    {
+      Serial.print(displayDigits[x].charAt(y));
+      Serial.print(" ");
+    }
+    Serial.println();
   }
 
   Serial.print("\n\n\n\n\n");
+  
 }
 
 
@@ -135,5 +146,5 @@ void setup()
 
 void loop()
 {
-  
+  delay(2000);
 }
