@@ -29,14 +29,9 @@ void displayConvert(int displayNumber)
       {
         s = 0 + s;
       }
-
-      displayDigits[displayNumber] = s;
     }
-    else
-    {
-      displayDigits[displayNumber] = s;
-    }
-}// End of displayConvert
+    displayDigits[displayNumber] = s;
+} // End of displayConvert
 
 
 /*
@@ -95,13 +90,13 @@ void updateScores()
   {
     /*
      * Increment all the displayVal & change displayDigits array accordingly.
-     */
      int index;
      
      for(index = (NUM_DISPLAYS - 1); index >= 0; index --)
      {
       displayConvert(index);
      }
+     */
   }
 
   printAll();
