@@ -6,8 +6,8 @@ String displayDigits[NUM_DISPLAYS] = {"000000", "000000", "000000", "000000", "0
 bool displayRunning[NUM_DISPLAYS] = {false, false, false, false, false};
 bool allRunning = false;
 int digitToPrint = 0;
-int curDigit = 0;
-int displayPin[NUM_DISPLAYS] = {26, 27, 28, 29, 38}; //Display 5:1; 29:26 are 4 MSBs of PORTA
+int curDigit = 0; // v some issue with pins 26 & 27
+int displayPin[NUM_DISPLAYS] = {26, 27, 28, 29, 38}; //Display 1-5; 29:26 are 4 MSBs of PORTA
 int enablePin[DISPLAY_DIGITS] = {52, 51, 50, 41, 40, 39}; //Left out 53; MSB to LSB
 
 /*
@@ -138,7 +138,7 @@ void printScores()
 {
   digitalWrite(A15, HIGH); //Blank all displays
   digitalWrite(enablePin[curDigit], LOW);
-  curDigit = (curDigit + 1) % 6;
+  curDigit = (curDigit + 1) % DISPLAY_DIGITS;
   digitalWrite(A9, HIGH);
   for(int i = 0; i < NUM_DISPLAYS; i++)
   {
