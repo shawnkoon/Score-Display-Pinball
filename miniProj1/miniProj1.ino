@@ -20,8 +20,24 @@ void displayConvert(int displayNumber)
 {
     displayVal[displayNumber] += 8353;
     displayVal[displayNumber] %= 1000000;
-    
-    displayDigits[displayNumber] = String(displayVal[displayNumber]);
+
+    String s = String(displayVal[displayNumber]);
+
+    if(s.length() < DISPLAY_DIGITS)
+    {
+      int i;
+      int digitsToAdd = DISPLAY_DIGITS - s.length();
+      for(i = 0; i < digitsToAdd; i++)
+      {
+        s = 0 + s;
+      }
+
+      displayDigits[displayNumber] = s;
+    }
+    else
+    {
+      displayDigits[displayNumber] = s;
+    }
 }// End of displayConvert
 
 
