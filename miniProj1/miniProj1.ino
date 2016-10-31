@@ -90,13 +90,14 @@ void updateScores()
   {
     /*
      * Increment all the displayVal & change displayDigits array accordingly.
+     */
      int index;
      
      for(index = (NUM_DISPLAYS - 1); index >= 0; index --)
      {
       displayConvert(index);
      }
-     */
+     
   }
 
   printAll();
@@ -137,7 +138,7 @@ void printScores()
   digitalWrite(A9, HIGH);
   for(int i = 0; i < NUM_DISPLAYS; i++)
   {
-    PORTA = 0b00000000 | byte(displayDigits[i].charAt(curDigit));
+    PORTA = byte(displayDigits[i].charAt(curDigit))& 0x0F;
     digitalWrite(displayPin[i], HIGH);
     digitalWrite(displayPin[i], LOW);
   }
@@ -161,7 +162,7 @@ void setup()
   pinMode(52, OUTPUT);
   pinMode(53, OUTPUT);
   // pins 29:22 are taken care of by the DDRA statement below
-  DDRA = 0b11111111;
+  DDRA = 0xFF;
 
   attachInterrupt(2, printScores, RISING);
 }
