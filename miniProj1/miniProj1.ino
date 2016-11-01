@@ -27,7 +27,7 @@ void displayConvert(int displayNumber)
       int digitsToAdd = DISPLAY_DIGITS - s.length();
       for(i = 0; i < digitsToAdd; i++)
       {
-        s = 0 + s;
+        s = " " + s;
       }
     }
     displayDigits[displayNumber] = s;
@@ -100,7 +100,7 @@ void updateScores()
      
   }
 
-  printAll();
+ // printAll();
   
 }// End of updateScores()
 
@@ -170,5 +170,4 @@ void setup()
 void loop()
 {
   updateScores();
-  
 }
