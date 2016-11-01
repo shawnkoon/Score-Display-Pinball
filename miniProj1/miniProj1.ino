@@ -39,7 +39,7 @@ void displayConvert(int displayNumber)
  */
 void updateScores()
 {
-  delay(2000);
+  delay(500);
   if(allRunning == false)
   {
     /*
